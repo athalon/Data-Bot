@@ -12,7 +12,7 @@ class DevCommands(commands.Cog):
     
     @commands.command()
     async def db_dump(self, ctx):
-        msg = ""
+        msg = "Database contents:\n"
         for key in db.keys():
             msg += f'"{key}": "{db[key]}"\n'
         await ctx.send(msg)
