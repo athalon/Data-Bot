@@ -12,7 +12,10 @@ class DevCommands(commands.Cog):
     
     @commands.command()
     async def db_dump(self, ctx):
-        await ctx.send(str(db.keys()))
+        msg = ""
+        for key in db.keys():
+            msg += key
+        await ctx.send(msg)
     
     @commands.command()
     async def db_del(self, ctx, key):
