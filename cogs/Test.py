@@ -8,7 +8,7 @@ class TestCommands(commands.Cog):
 
     @commands.command()
     async def test(self, ctx):
-        await ctx.send(createStandardEmbed(ctx, "", "Test successful!"))
+        await ctx.send(embed=createStandardEmbed(ctx, "", "Test successful!"))
 
 
 def setup(bot):
