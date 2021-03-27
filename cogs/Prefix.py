@@ -9,7 +9,10 @@ class PrefixCommands(commands.Cog):
     @commands.command()
     async def prefix(self, ctx, prefix=None):
         if prefix is not None and ctx.author.guild_permissions.administrator:
-            writeToDb(ctx.guild.id, prefix)
+            if prefix == getDefaultPrefix():
+                deleteDbEntry(ctx.guild.id)
+            else:
+                writeToDb(ctx.guild.id, prefix)
             em = createStandardEmbed(ctx, f"The prefix was successfully changed to `{prefix}`", "Prefix")
             await ctx.send(embed=em)
         else:

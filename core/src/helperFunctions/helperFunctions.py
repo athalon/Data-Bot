@@ -18,9 +18,6 @@ def createStandardEmbed(ctx, description, title):
 
 
 def getPrefix(client, ctx):
-    # Return codes:
-    # 0: prefix was found in the database
-    # 1: prefix was not found in the database (default prefix used)
     try:
         prefix = str(db[str(ctx.guild.id)])
     except KeyError:
