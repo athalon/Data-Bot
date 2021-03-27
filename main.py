@@ -12,11 +12,8 @@ from core.src.helperFunctions.helperFunctions import *
 
 TOKEN = os.getenv("BOT_TOKEN")  # Getting the bot token from the .env file
 
-cog_rel_path = './core/src/cogs/'
-
 client = commands.Bot(command_prefix=getPrefix, case_insensitive=True)
-# Remove standard help command for custom help command
-client.remove_command('help')
+client.remove_command('help') # Remove standard help command for custom help command
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,19 +71,19 @@ async def reload(ctx, extension):
 
 
 def loadAllCogs():
-    for filename in os.listdir(cog_rel_path):
+    for filename in os.listdir('./cogs/'):
         if filename.endswith('.py'):
             # Loads the extension by the file name and cuts off the .py at the end
-            client.load_extension(f'{cog_rel_path}.{filename[:-3]}')
+            client.load_extension(f'cogs.{filename[:-3]}')
             print("Cog loaded: " + filename[:-3])
     print("All Systems alive and functional")
 
 
 def unloadAllCogs():
-    for filename in os.listdir(cog_rel_path):
+    for filename in os.listdir('./cogs/'):
         if filename.endswith('.py'):
             # Unloads the extension by the file name and cuts off the .py at the end
-            client.unload_extension(f'{cog_rel_path}.{filename[:-3]}')
+            client.unload_extension(f'cogs.{filename[:-3]}')
             print("Cog unloaded: " + filename[:-3])
 
 
