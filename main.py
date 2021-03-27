@@ -33,6 +33,7 @@ async def load(ctx, extension):
     if ctx.author.id == 615608898279309312:
         if extension == "all":
             loadAllCogs()
+            await ctx.send("All cogs loaded!")
         else:
             client.load_extension(f'cogs.{extension}')
             await ctx.send(f"Cog `{extension}` loaded!")
@@ -45,6 +46,7 @@ async def unload(ctx, extension):
     if ctx.author.id == 615608898279309312:
         if extension == "all":
             unloadAllCogs()
+            await ctx.send("All cogs unloaded!")
         else:
             client.unload_extension(f'cogs.{extension}')
             await ctx.send(f"Cog `{extension}` unloaded!")
@@ -58,6 +60,7 @@ async def reload(ctx, extension):
         if extension == "all":
             unloadAllCogs()
             loadAllCogs()
+            await ctx.send("All cogs reloaded!")
         else:
             client.unload_extension(f'cogs.{extension}')
             client.load_extension(f'cogs.{extension}')
