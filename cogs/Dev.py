@@ -14,7 +14,7 @@ class DevCommands(commands.Cog):
     async def db_dump(self, ctx):
         msg = ""
         for key in db.keys():
-            msg += key
+            msg += db[key]
         await ctx.send(msg)
     
     @commands.command()
