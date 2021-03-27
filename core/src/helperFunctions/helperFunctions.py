@@ -17,28 +17,23 @@ def createStandardEmbed(ctx, description, title):
     return embed
 
 
-def getPrefix(client, ctx):
+def getPrefix(client, ctx): # Get the prefix for the current guild from the db
     try:
-        prefix = str(db[str(ctx.guild.id)])
+        prefix = str(db[str(ctx.guild.id)]) # Get the prefix from the db by using the guild id as the key
     except KeyError:
-        prefix = default_prefix
+        prefix = default_prefix # If the db entry isnt found, switch to the default prefix
     return prefix
 
 
-def getDefaultPrefix():
-    global default_prefix
-    return default_prefix
-
-
-def writeToDb(key, value):
+def writeToDb(key, value): # Write to the replit db using a key and value pair
     db[str(key)] = str(value)
 
 
-def deleteDbEntry(key):
+def deleteDbEntry(key): # Delete a db entry
     try:
-        del db[str(key)]
-    except KeyError:
-        return
+        del db[str(key)] # Delete the entry from the replit db by using the key
+    except KeyError: 
+        return # If the db entry isnt found, do nothing
 
 
 def createHelpEmbed(ctx, client, name, description, params, req_perms, aliases):
@@ -51,13 +46,13 @@ def createHelpEmbed(ctx, client, name, description, params, req_perms, aliases):
     return embed
 
 
-def getMember(client, arg):
+def getMember(client, arg): # Safe way of getting a member object
     if isinstance(arg, int):
-        return client.get_user(arg)
+        return client.get_user(arg) # If the argument is an int and thus an id, get the member object from that id
     elif isinstance(arg, discord.Member):
-        return arg
+        return arg # If its a member object already, just return it normally
     else:
-        raise discord.InvalidArgument
+        raise discord.InvalidArgument # If its neither an id or a discord.Member object, raise an error
 
 
-def uppath(_path, n): return os.sep.join(_path.split(os.sep)[:-n])
+def uppath(_path, n): return os.sep.join(_path.split(os.sep)[:-n]) # Return the parent directory (n defines the times that you want to go up)
