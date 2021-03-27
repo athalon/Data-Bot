@@ -9,7 +9,7 @@ class PrefixCommands(commands.Cog):
     @commands.command()
     async def prefix(self, ctx, prefix=None):
         if prefix is not None and ctx.author.guild_permissions.administrator:
-            if prefix == getDefaultPrefix():
+            if prefix == default_prefix:
                 deleteDbEntry(ctx.guild.id)
             else:
                 writeToDb(ctx.guild.id, prefix)
