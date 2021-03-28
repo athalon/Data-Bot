@@ -55,9 +55,9 @@ def getMember(client, arg): # Safe way of getting a member object
     else:
         raise discord.InvalidArgument # If its neither an id or a discord.Member object, raise an error
 
-def fetchBasicApi(link, *, params):
+def fetchBasicApi(link, *, params=None):
     request = get(link, params)
-    return request.json()
+    return request.json()['fact']
 
 def fetchFactApi(fact):
     return fetchBasicApi('https://some-random-api.ml/facts/' + fact)

@@ -9,8 +9,8 @@ class FactCommands(commands.Cog):
     @commands.command()
     async def animal(self, ctx, animal):
         allowed_animals = ['dog', 'cat', 'panda', 'fox', 'bird', 'koala']
-        if animal in allowed_animals:
-            await ctx.send(createStandardEmbed(ctx, fetchFactApi(animal), f'Random {animal} fact'))
+        if animal.lower() in allowed_animals:
+            await ctx.send(embed=createStandardEmbed(ctx, fetchFactApi(animal), f'Random {animal} fact'))
         else:
             raise InvalidArgument("There are no facts about the animal " + animal)
     
