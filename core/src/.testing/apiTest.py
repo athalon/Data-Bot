@@ -8,8 +8,6 @@ https://apilist.fun/
 https://some-random-api.ml/
 '''
 
-word = input("> ")
-
 request = requests.get('https://api.publicapis.org/entries')
 request_dict = request.json()
 

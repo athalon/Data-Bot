@@ -1,6 +1,7 @@
 import discord
 from replit import db
 import os
+from requests import get
 
 default_prefix = 'd!'
 
@@ -54,5 +55,11 @@ def getMember(client, arg): # Safe way of getting a member object
     else:
         raise discord.InvalidArgument # If its neither an id or a discord.Member object, raise an error
 
+def fetchBasicApi(link, *, params):
+    request = get(link, params)
+    return request.json()
+
+def fetchFactApi(fact):
+    return fetchBasicApi('https://some-random-api.ml/facts/' + fact)
 
 def uppath(_path, n): return os.sep.join(_path.split(os.sep)[:-n]) # Return the parent directory (n defines the times that you want to go up)
