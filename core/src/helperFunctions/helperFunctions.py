@@ -29,7 +29,6 @@ def getPrefix(client, ctx): # Get the prefix for the current guild from the db
 def writeToDb(key, value): # Write to the replit db using a key and value pair
     db[str(key)] = str(value)
 
-
 def deleteDbEntry(key): # Delete a db entry
     try:
         del db[str(key)] # Delete the entry from the replit db by using the key
@@ -55,11 +54,9 @@ def getMember(client, arg): # Safe way of getting a member object
     else:
         raise discord.InvalidArgument # If its neither an id or a discord.Member object, raise an error
 
-def fetchBasicApi(link, *, params=None):
-    request = get(link, params)
-    return request.json()['fact']
 
-def fetchFactApi(fact):
-    return fetchBasicApi('https://some-random-api.ml/facts/' + fact)
+fetchBasicApi = lambda link, *, params: get(link, params).json()['fact']
 
-def uppath(_path, n): return os.sep.join(_path.split(os.sep)[:-n]) # Return the parent directory (n defines the times that you want to go up)
+fetchFactApi = lambda fact: fetchBasicApi('https://some-random-api.ml/facts/' + fact)
+
+uppath = lambda _path, n: os.sep.join(_path.split(os.sep)[:-n]) # Return the parent directory (n defines the times that you want to go up)
